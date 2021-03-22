@@ -38,14 +38,14 @@ app.layout = html.Div(
     children=[
         html.Div([
             html.Div([
-                html.H2("Fundamentals Quantifier",
+                html.H2("Fundamentals Quantifier for Javier Ruiz",
                         style={'text-align': 'center',
                                'text-shadow': '-1px 0 black, 0 1px black,'
                                               '1px 0 black, 0 -1px black'}),
                 html.Div([
                     html.Summary('API Key'),
                     dcc.Input(
-                        id="api", style={'width': '100%'})],
+                        id="d49937195403988363adbc38bb60fa12", style={'width': '100%'})],
                     style={'padding-top': '10px'}),
 
                 html.Div([
