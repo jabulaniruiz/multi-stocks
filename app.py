@@ -5,10 +5,9 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import json
+#https://www.w3schools.com/python/python_json.asp
 from assets.introduction_text import introduction_text
 from utilities import create_drop_down_options
-
-api_key = 'd49937195403988363adbc38bb60fa12'
 
 with open("data/companies.json", "r") as read_file:
     company_list = json.load(read_file)
@@ -36,20 +35,24 @@ app = dash.Dash(__name__)
 app.title = "Fundamentals Quantifier"
 server = app.server
 
+api_key = 'd49937195403988363adbc38bb60fa12'
+
 app.layout = html.Div(
     children=[
         html.Div([
             html.Div([
-                html.H2("Fundamentals Quantifier for Javier Ruiz",
+                html.H2("Multi-stocks by Javier Ruiz 2",
                         style={'text-align': 'center',
                                'text-shadow': '-1px 0 black, 0 1px black,'
                                               '1px 0 black, 0 -1px black'}),
-                html.Div([
-                    html.Summary('API Key'),
-                    dcc.Input(
-                        id="api", style={'width': '100%'})],
-                    style={'padding-top': '10px'}),
-
+# =============================================================================
+#                 html.Div([
+#                     html.Summary('API Key'),
+#                     dcc.Input(
+#                         id="api", style={'width': '100%'})],
+#                     style={'padding-top': '10px'}),
+# 
+# =============================================================================
                 html.Div([
                     html.Summary('Sectors'),
                     dcc.Dropdown(
@@ -236,8 +239,14 @@ def show_matching_companies(sectors, industries):
 @app.callback(
     Output(component_id='company_profile_data', component_property='children'),
     [Input(component_id="companies", component_property='value'),
-     Input(component_id="api", component_property='value')])
-def collect_company_profiles(companies, api_key):
+# =============================================================================
+#      Input(component_id="api", component_property='value')
+# =============================================================================
+     ])
+# =============================================================================
+# def collect_company_profiles(companies, api_key):
+# =============================================================================
+def collect_company_profiles(companies):    
     if not companies or companies is None:
         return None
 
@@ -325,8 +334,14 @@ def display_stock_data_graph(companies, data_type, stock_data):
     [Input(component_id="companies", component_property='value'),
      Input(component_id="period", component_property='value'),
      Input(component_id='key_metrics', component_property='value'),
-     Input(component_id='api', component_property='value')])
-def collect_key_metrics_data(companies, period, key_metrics, api_key):
+# =============================================================================
+#      Input(component_id='api', component_property='value')
+# =============================================================================
+     ])
+# =============================================================================
+# def collect_key_metrics_data(companies, period, key_metrics, api_key):
+# =============================================================================
+def collect_key_metrics_data(companies, period, key_metrics):
     if (not companies or companies is None) or key_metrics is None:
         return None
 
@@ -383,8 +398,14 @@ def display_key_metrics_graph(companies, data_type, key_metrics_data,
     Output(component_id='ratios_data', component_property='children'),
     [Input(component_id="companies", component_property='value'),
      Input(component_id='financial_ratios', component_property='value'),
-     Input(component_id='api', component_property='value')])
-def collect_ratios_data(companies, financial_ratios, api_key):
+# =============================================================================
+#      Input(component_id='api', component_property='value')
+# =============================================================================
+     ])
+# =============================================================================
+# def collect_ratios_data(companies, financial_ratios, api_key):
+# =============================================================================
+def collect_ratios_data(companies, financial_ratios):    
     if (not companies or companies is None) or financial_ratios is None:
         return None
 
@@ -442,8 +463,14 @@ def display_ratios_graphs(companies, data_type, ratios_data,
     [Input(component_id="companies", component_property='value'),
      Input(component_id="period", component_property='value'),
      Input(component_id='balance_sheet_statement', component_property='value'),
-     Input(component_id='api', component_property='value')])
-def collect_balance_sheet_statement_data(companies, period, balance_sheet_statement, api_key):
+# =============================================================================
+#      Input(component_id='api', component_property='value')
+# =============================================================================
+     ])
+# =============================================================================
+# def collect_balance_sheet_statement_data(companies, period, balance_sheet_statement, api_key):
+# =============================================================================
+def collect_balance_sheet_statement_data(companies, period, balance_sheet_statement):    
     if (not companies or companies is None) or balance_sheet_statement is None:
         return None
 
@@ -499,8 +526,14 @@ def display_balance_sheet_statement_graphs(companies, data_type, balance_sheet_d
     [Input(component_id="companies", component_property='value'),
      Input(component_id="period", component_property='value'),
      Input(component_id='income_statement', component_property='value'),
-     Input(component_id='api', component_property='value')])
-def collect_income_statement_data(companies, period, income_statement, api_key):
+# =============================================================================
+#      Input(component_id='api', component_property='value')
+# =============================================================================
+     ])
+# =============================================================================
+# def collect_income_statement_data(companies, period, income_statement, api_key):
+# =============================================================================
+def collect_income_statement_data(companies, period, income_statement):
     if (not companies or companies is None) or income_statement is None:
         return None
 
@@ -556,8 +589,14 @@ def display_income_statement_graphs(companies, data_type, income_statement_data,
     [Input(component_id="companies", component_property='value'),
      Input(component_id="period", component_property='value'),
      Input(component_id='cash_flow_statement', component_property='value'),
-     Input(component_id='api', component_property='value')])
-def collect_cash_flow_statement_data(companies, period, cash_flow_statement, api_key):
+# =============================================================================
+#      Input(component_id='api', component_property='value')
+# =============================================================================
+     ])
+# =============================================================================
+# def collect_cash_flow_statement_data(companies, period, cash_flow_statement, api_key):
+# =============================================================================
+def collect_cash_flow_statement_data(companies, period, cash_flow_statement):
     if (not companies or companies is None) or cash_flow_statement is None:
         return None
 
@@ -613,8 +652,14 @@ def display_cash_flow_statement_graphs(companies, data_type, cash_flow_statement
     [Input(component_id="companies", component_property='value'),
      Input(component_id="period", component_property='value'),
      Input(component_id='financial_statement_growth', component_property='value'),
-     Input(component_id='api', component_property='value')])
-def collect_financial_statement_growth_data(companies, period, financial_statement_growth, api_key):
+# =============================================================================
+#      Input(component_id='api', component_property='value')
+# =============================================================================
+     ])
+# =============================================================================
+# def collect_financial_statement_growth_data(companies, period, financial_statement_growth, api_key):
+# =============================================================================
+def collect_financial_statement_growth_data(companies, period, financial_statement_growth):
     if (not companies or companies is None) or financial_statement_growth is None:
         return None
 
