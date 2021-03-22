@@ -8,6 +8,8 @@ import json
 from assets.introduction_text import introduction_text
 from utilities import create_drop_down_options
 
+api_key = 'd49937195403988363adbc38bb60fa12'
+
 with open("data/companies.json", "r") as read_file:
     company_list = json.load(read_file)
 company_options_list = []
@@ -45,7 +47,7 @@ app.layout = html.Div(
                 html.Div([
                     html.Summary('API Key'),
                     dcc.Input(
-                        id="d49937195403988363adbc38bb60fa12", style={'width': '100%'})],
+                        id="api", style={'width': '100%'})],
                     style={'padding-top': '10px'}),
 
                 html.Div([
